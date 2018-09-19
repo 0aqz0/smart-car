@@ -1,0 +1,8 @@
+prefix=/home/haodong/smart-car/devel
+
+Name: smart_car
+Description: Description of smart_car
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/haodong/smart-car/devel/lib 
+Requires: 
