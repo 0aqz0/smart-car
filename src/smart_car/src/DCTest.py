@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 from Raspi_MotorHAT import Raspi_MotorHAT, Raspi_DCMotor
 
 import time

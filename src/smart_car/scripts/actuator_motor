@@ -1,2 +1,3 @@
 #!/usr/bin/env python
 import rospy
+from Raspi_MotorHAT import Raspi_MotorHAT, Raspi_DCMotor

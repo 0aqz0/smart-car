@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 #import Raspi_MotorHAT, Raspi_DCMotor, Raspi_Stepper 
 from Raspi_MotorHAT import Raspi_MotorHAT, Raspi_DCMotor, Raspi_StepperMotor
 
