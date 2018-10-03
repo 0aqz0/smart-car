@@ -2,7 +2,8 @@
 import rospy
 from smart_car.Raspi_MotorHAT import Raspi_MotorHAT, Raspi_DCMotor
 from sensor_msgs.msg import Joy
-from geometry_msgs.msg import Twist
+# from geometry_msgs.msg import Twist
+from std_msgs.msg import String
 
 import time
 import atexit
@@ -10,6 +11,7 @@ import atexit
 class motor_controller:
     def __init__(self):
         rospy.init_node('motor_controller')
+        self.publisher = rospy.Publisher('motor_state', String, queue_size=10)
         rospy.Subscriber('joy', Joy, self.updateVelocity)
 
         self.mh = Raspi_MotorHAT(addr=0x6f)
@@ -21,14 +23,27 @@ class motor_controller:
         atexit.register(self.turnOffMotors)
         
         self.setSpeed(150)
-        self.moveForward()
-        self.turnOffMotors()
+        # self.moveForward()
+        # self.turnOffMotors()
+
+        self.state = 'still'
+
+        self.publish()
+
         
     def moveForward(self):
         self.motor1.run(Raspi_MotorHAT.FORWARD)
         self.motor2.run(Raspi_MotorHAT.FORWARD)
         self.motor3.run(Raspi_MotorHAT.FORWARD)
         self.motor4.run(Raspi_MotorHAT.FORWARD)
+        # time.sleep(0.01)
+    
+    def moveBackward(self):
+        self.motor1.run(Raspi_MotorHAT.BACKWARD)
+        self.motor2.run(Raspi_MotorHAT.BACKWARD)
+        self.motor3.run(Raspi_MotorHAT.BACKWARD)
+        self.motor4.run(Raspi_MotorHAT.BACKWARD)
+        # time.sleep(0.01)
 
     def setSpeed(self, speed):
         self.motor1.setSpeed(speed)
@@ -41,12 +56,61 @@ class motor_controller:
         self.motor2.run(Raspi_MotorHAT.RELEASE)
         self.motor3.run(Raspi_MotorHAT.RELEASE)
         self.motor4.run(Raspi_MotorHAT.RELEASE)
+        # time.sleep(0.01)
 
     def updateVelocity(self, data):
-        twist = Twist()
-        twist.linear.x = 4 * data.axes[1]
-        twist.angular.z = 4 * data.axes[0]
-        rospy.logwarn(data)
+        # twist = Twist()
+        # twist.linear.x = 4 * data.axes[1]
+        # twist.angular.z = 4 * data.axes[0]
+
+        # v1
+        # rospy.logwarn(data)
+        # if data.axes[1] > 0:
+        #     self.setSpeed(int(data.axes[1]*255))
+        #     self.moveForward()
+        # elif data.axes[1] == 0:
+        #     self.turnOffMotors()
+        # elif data.axes[1] < 0:
+        #     self.setSpeed(int(abs(data.axes[1]*255)))
+        #     self.moveBackward()
+
+        # v2
+        rotation_coefficient = 1
+        if data.axes[1] > 0 and data.axes[0] >= 0:
+            self.state = 'right_forward'
+            self.motor1.setSpeed(int(abs(data.axes[1]*255)))
+            self.motor2.setSpeed(int(abs((data.axes[1]-rotation_coefficient*data.axes[0])*255)))
+            self.motor3.setSpeed(int(abs(data.axes[1]*255)))
+            self.motor4.setSpeed(int(abs((data.axes[1]-rotation_coefficient*data.axes[0])*255)))
+            self.moveForward()
+        elif data.axes[1] > 0 and data.axes[0] < 0:
+            self.state = 'left_forward'
+            self.motor1.setSpeed(int(abs((data.axes[1]+rotation_coefficient*data.axes[0])*255)))
+            self.motor2.setSpeed(int(abs(data.axes[1]*255)))
+            self.motor3.setSpeed(int(abs((data.axes[1]+rotation_coefficient*data.axes[0])*255)))
+            self.motor4.setSpeed(int(abs(data.axes[1]*255)))
+            self.moveForward()
+        elif data.axes[1] < 0 and data.axes[0] >= 0:
+            self.state = 'right_backward'
+            self.motor1.setSpeed(int(abs(data.axes[1]*255)))
+            self.motor2.setSpeed(int(abs((data.axes[1]+rotation_coefficient*data.axes[0])*255)))
+            self.motor3.setSpeed(int(abs(data.axes[1]*255)))
+            self.motor4.setSpeed(int(abs((data.axes[1]+rotation_coefficient*data.axes[0])*255)))
+            self.moveBackward()
+        elif data.axes[1] < 0 and data.axes[0] < 0:
+            self.state = 'left_backward'
+            self.motor1.setSpeed(int(abs((data.axes[1]-rotation_coefficient*data.axes[0])*255)))
+            self.motor2.setSpeed(int(abs(data.axes[1]*255)))
+            self.motor3.setSpeed(int(abs((data.axes[1]-rotation_coefficient*data.axes[0])*255)))
+            self.motor4.setSpeed(int(abs(data.axes[1]*255)))
+            self.moveBackward()
+        else:
+            self.turnOffMotors()
+        
+    def publish(self):
+        while not rospy.is_shutdown():
+            self.publisher.publish(self.state)
+
 
 
 
