@@ -1,0 +1,6 @@
+set(smart_car_SETUP_PY_VERSION "0.0.0")
+set(smart_car_SETUP_PY_SCRIPTS "")
+set(smart_car_SETUP_PY_PACKAGES "smart_car")
+set(smart_car_SETUP_PY_PACKAGE_DIRS "src/smart_car")
+set(smart_car_SETUP_PY_MODULES "")
+set(smart_car_SETUP_PY_MODULE_DIRS "")

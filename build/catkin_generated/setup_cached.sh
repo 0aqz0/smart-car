@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/haodong/smart-car/build"
+export PWD="/home/aqz/smart-car/build"

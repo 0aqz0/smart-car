@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "smart_car"
-PROJECT_SPACE_DIR = "/home/haodong/smart-car/devel"
+PROJECT_SPACE_DIR = "/home/aqz/smart-car/devel"
 PROJECT_VERSION = "0.0.0"

@@ -1,8 +1,8 @@
-# Install script for directory: /home/haodong/smart-car/src/smart_car
+# Install script for directory: /home/aqz/smart-car/src/smart_car
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/haodong/smart-car/install")
+  set(CMAKE_INSTALL_PREFIX "/home/aqz/smart-car/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,21 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/haodong/smart-car/build/smart_car/catkin_generated/installspace/smart_car.pc")
+  include("/home/aqz/smart-car/build/smart_car/catkin_generated/safe_execute_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/aqz/smart-car/build/smart_car/catkin_generated/installspace/smart_car.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/smart_car/cmake" TYPE FILE FILES
-    "/home/haodong/smart-car/build/smart_car/catkin_generated/installspace/smart_carConfig.cmake"
-    "/home/haodong/smart-car/build/smart_car/catkin_generated/installspace/smart_carConfig-version.cmake"
+    "/home/aqz/smart-car/build/smart_car/catkin_generated/installspace/smart_carConfig.cmake"
+    "/home/aqz/smart-car/build/smart_car/catkin_generated/installspace/smart_carConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/smart_car" TYPE FILE FILES "/home/haodong/smart-car/src/smart_car/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/smart_car" TYPE FILE FILES "/home/aqz/smart-car/src/smart_car/package.xml")
 endif()
 
