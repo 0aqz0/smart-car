@@ -36,14 +36,22 @@ class motor_controller:
         self.motor2.run(Raspi_MotorHAT.FORWARD)
         self.motor3.run(Raspi_MotorHAT.FORWARD)
         self.motor4.run(Raspi_MotorHAT.FORWARD)
+<<<<<<< HEAD
         time.sleep(0.01)
+=======
+        # time.sleep(0.01)
+>>>>>>> e6c78942b492582c6eead57752465e1fb7085879
     
     def moveBackward(self):
         self.motor1.run(Raspi_MotorHAT.BACKWARD)
         self.motor2.run(Raspi_MotorHAT.BACKWARD)
         self.motor3.run(Raspi_MotorHAT.BACKWARD)
         self.motor4.run(Raspi_MotorHAT.BACKWARD)
+<<<<<<< HEAD
         time.sleep(0.01)
+=======
+        # time.sleep(0.01)
+>>>>>>> e6c78942b492582c6eead57752465e1fb7085879
 
     def setSpeed(self, speed):
         self.motor1.setSpeed(speed)
@@ -56,7 +64,11 @@ class motor_controller:
         self.motor2.run(Raspi_MotorHAT.RELEASE)
         self.motor3.run(Raspi_MotorHAT.RELEASE)
         self.motor4.run(Raspi_MotorHAT.RELEASE)
+<<<<<<< HEAD
         time.sleep(0.01)
+=======
+        # time.sleep(0.01)
+>>>>>>> e6c78942b492582c6eead57752465e1fb7085879
 
     def updateVelocity(self, data):
         # twist = Twist()
@@ -106,12 +118,15 @@ class motor_controller:
             self.moveBackward()
         else:
             self.turnOffMotors()
+<<<<<<< HEAD
 
 
         
 
 
 
+=======
+>>>>>>> e6c78942b492582c6eead57752465e1fb7085879
         
     def publish(self):
         while not rospy.is_shutdown():
