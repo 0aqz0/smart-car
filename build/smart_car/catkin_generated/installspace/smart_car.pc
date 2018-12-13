@@ -1,8 +1,0 @@
-prefix=/home/aqz/smart-car/install
-
-Name: smart_car
-Description: Description of smart_car
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/aqz/smart-car/install/lib 
-Requires: 

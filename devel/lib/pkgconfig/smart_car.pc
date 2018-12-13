@@ -1,8 +1,0 @@
-prefix=/home/aqz/smart-car/devel
-
-Name: smart_car
-Description: Description of smart_car
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/aqz/smart-car/devel/lib 
-Requires: 
